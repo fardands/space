@@ -1,0 +1,69 @@
+[gd_scene load_steps=13 format=3 uid="uid://c4wd4t2y3s3iw"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_b56vf"]
+[ext_resource type="Texture2D" uid="uid://chyyp44h7bu3x" path="res://ship/Fighter3_1.png" id="1_dm7xk"]
+[ext_resource type="Texture2D" uid="uid://c8gnqwinxaurf" path="res://exhaust/Engine_exhaust1_frames1.png" id="3_efior"]
+[ext_resource type="PackedScene" uid="uid://de8vue7lqcu3h" path="res://parallax_background.tscn" id="3_tq04o"]
+[ext_resource type="Texture2D" uid="uid://b5lnhhvowksmt" path="res://exhaust/Engine_exhaust1_frames2.png" id="4_4jcjf"]
+[ext_resource type="Texture2D" uid="uid://dw3g35mf2xtfb" path="res://exhaust/Engine_exhaust1_frames3.png" id="5_rfjtg"]
+[ext_resource type="Texture2D" uid="uid://dy67cn0dujxxi" path="res://exhaust/Engine_exhaust1_frames4.png" id="6_0qapl"]
+[ext_resource type="Texture2D" uid="uid://cuawfdshfwkaj" path="res://exhaust/Engine_exhaust1_frames5.png" id="7_1u8w7"]
+[ext_resource type="Texture2D" uid="uid://bpe8cuuh0kgoj" path="res://exhaust/Engine_exhaust1_frames6.png" id="8_xjyun"]
+[ext_resource type="Texture2D" uid="uid://dijn8njdm8qwy" path="res://exhaust/Engine_exhaust1_frames7.png" id="9_a1wa1"]
+[ext_resource type="Texture2D" uid="uid://hg05n2wh4qyi" path="res://exhaust/Engine_exhaust1_frames8.png" id="10_0r4y0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c8ad1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_efior")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4jcjf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rfjtg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0qapl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1u8w7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_xjyun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_a1wa1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_0r4y0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="Player" type="RigidBody2D"]
+mass = 1000.0
+can_sleep = false
+script = ExtResource("1_b56vf")
+
+[node name="Ship" type="Sprite2D" parent="."]
+texture = ExtResource("1_dm7xk")
+
+[node name="Exhaust" type="AnimatedSprite2D" parent="Ship"]
+z_index = -1
+position = Vector2(-54, -1.38556e-13)
+rotation = 1.5708
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_c8ad1")
+frame = 5
+frame_progress = 0.696501
+
+[node name="ShipCollision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-24, -14, -8, -14, 28, -2, 28, 2, -8, 14, -24, 14, -24, 5, -28, 5, -28, -5, -24, -5)
+
+[node name="Camera" type="Camera2D" parent="."]
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("3_tq04o")]
